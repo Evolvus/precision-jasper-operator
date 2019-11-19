@@ -1,3 +1,6 @@
+#!/usr/local/bin/bash
+
+
 echo "Generating jrxml from the template..."
 ./jrxml_template.sh products "Product Report" > ../temp/prod.jrxml
 echo "Compiling JRXML to Jasper..."
