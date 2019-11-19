@@ -1,0 +1,4 @@
+**/output/*.xls
+**/temp/*.jrxml
+**/temp/*.jasper
+
