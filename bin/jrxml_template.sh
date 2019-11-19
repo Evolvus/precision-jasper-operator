@@ -137,10 +137,7 @@ done
 			<staticText>
 				<reportElement x="0" y="14" mode="Opaque" width="400" height="${HEADER_HEIGHT}" backcolor="${HEADER_BACK_COLOR}" uuid="48b31c60-4e24-4a63-b6eb-6c7c0275b003"/>
 				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<pen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Left">
 					<font fontName="${HEADER_FONT_TYPE}" size="${HEADER_FONT_SIZE}" isBold="true"/>
@@ -227,10 +224,7 @@ done
         wdth=$(echo $col | cut -d "|" -f 2)
 				coltype=$(echo $col | cut -d "|" -f 3)
 
-				if [ $coltype = "int" ]
-				then
-						printf '%2s\n' "${FC1}"
-				elif [ $coltype = "float" ]
+				if [ $coltype = "float" ]
 				then
 						printf '%2s\n' "${FC1FLOAT}"
 				elif [ $coltype = "date" ]
