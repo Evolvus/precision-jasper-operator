@@ -26,17 +26,24 @@ Make sure that the fonts are available otherwise it does not compile.
 
 ### Column level customisation --> 
 COLUMN_BACK_COLOR="#CEDE1F"
+
 COLUMN_FONT_TYPE="Arial"
+
 COLUMN_FONT_SIZE="12"
+
 COLUMN_HEIGHT="15"
 
 ### Header Customisation -->
 HEADER_BACK_COLOR="#CEDE1F"
+
 HEADER_FONT_TYPE="Arial"
+
 HEADER_FONT_SIZE="16"
+
 HEADER_HEIGHT="30"
 
 ### Data format Customisation -->
 FLOAT_PATTERN=#,##0.00
+
 DATE_PATTERN="d-M-yyyy"
 
