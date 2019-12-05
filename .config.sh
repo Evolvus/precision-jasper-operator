@@ -1,5 +1,7 @@
 #!/usr/local/bin/bash
 
+#RDBMS type MYQL, ORACLE, Currently these twoo are supported
+DB_TYPE=MYSQL
 
 COLUMN_BACK_COLOR="#CEDE1F"
 COLUMN_FONT_TYPE="Utopia"
