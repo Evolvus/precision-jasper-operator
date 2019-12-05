@@ -1,10 +1,18 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 source ../.config.sh
 TABLE=$1
 HEADER=$2
-mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT
-concat(COLUMN_NAME,'|',least(200,case when data_type not in ('VARCHAR','CHAR') then 200 else character_maximum_length end),'|',data_type)  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'project_management' AND TABLE_NAME = '$TABLE' order by ORDINAL_POSITION;")
+#mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT
+#concat(COLUMN_NAME,'|',least(200,case when data_type not in ('VARCHAR','CHAR') then 200 else character_maximum_length end),'|',data_type)  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'project_management' AND TABLE_NAME = 'products' order by ORDINAL_POSITION;")
 
+
+collist=($(sqlplus -s precision/987#654#32Masterlove@GLFNCMI<<eof
+set pages 0
+set head off
+set feed off
+select column_name||'|'||200||'|'||data_type||'|'||nvl(data_scale,0) from all_tab_columns where table_name = '$TABLE'  order by column_id;
+exit
+eof))
 
 #collist=("id" "Product_Name" "Product Descrition" "isCOE" "Product Manager" "Product Director" "profit_centre")
 #collen=(50 100 300 50 100 100 50)
@@ -34,7 +42,7 @@ FB9="</staticText>"
 
 
 FC1="<textField >"
-FC1FLOAT="<textField isStretchWithOverflow='true' pattern='${FLOAT_PATTERN}'>"
+FC1FLOAT="<textField isStretchWithOverflow='true' pattern='${FLOAT_PATTERN}"
 FC1DATE="<textField isStretchWithOverflow='true' pattern='${DATE_PATTERN}'>"
 
 FCX2="<reportElement  x='"
@@ -106,14 +114,15 @@ for col in "${collist[@]}"; do
   colname=$(echo $col | cut -d "|" -f 1)
   collen=$(echo $col | cut -d "|" -f 2)
 	coltype=$(echo $col | cut -d "|" -f 3)
+	colscale=$(echo $col | cut -d "|" -f 4)
 	typtrn=""
 	if [ $coltype = "int" ]
 	then
 			typtrn="lang.Integer"
-	elif [ $coltype = "float" ]
+	elif [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
 	then
 			typtrn="lang.Float"
-	elif [ $coltype = "date" ]
+	elif [ $coltype = "DATE" ]
 	then
 			typtrn="util.Date"
 	else
@@ -223,11 +232,26 @@ done
         colname=$(echo $col | cut -d "|" -f 1)
         wdth=$(echo $col | cut -d "|" -f 2)
 				coltype=$(echo $col | cut -d "|" -f 3)
+				colscale=$(echo $col | cut -d "|" -f 4)
 
-				if [ $coltype = "float" ]
+	                        if [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
 				then
-						printf '%2s\n' "${FC1FLOAT}"
-				elif [ $coltype = "date" ]
+						printf '%2s' "${FC1FLOAT}"
+					if [ $colscale -eq 2 ];
+					then
+						printf '%.s0' {1..2}
+					elif [ $colscale -eq 6 ];
+					then
+						printf '%.s0' {1..6}
+					elif [ $colscale -eq 7 ];
+					then
+						printf '%.s0' {1..7}
+					else
+						printf '%.s0' {1..2}
+					fi
+					printf "'>\n"	
+						
+				elif [ $coltype = "DATE" ]
 				then
 						printf '%2s\n' "${FC1DATE}"
 				else
@@ -240,7 +264,7 @@ done
 				printf '%2s\n' "${FBOXA}"
 				printf '%2s\n' "${FBOXB}"
 				printf '%2s\n' "${FBOXC}"
-				if [ $coltype = "float" ]
+	                        if [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
 				then
 					printf '%2s\n' "${FC4}"
 				fi
