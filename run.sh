@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 cd bin
 while read -r line;
@@ -12,7 +12,9 @@ do
   echo "Compiling JRXML to Jasper..."
   ./jasperstarter cp -o ../temp/"$pd1" ../temp/"$pd1".jrxml
   echo "Running the report..."
-  ./jasperstarter pr ../temp/${pd1}.jasper -o ../output/${pd1} -f xlsx -t mysql -H 127.0.0.1 -u root -p evolvus*123 -n project_management --db-driver com.mysql.cj.jdbc.Driver --jdbc-dir ../lib/.
+  
+  ./jasperstarter pr ../temp/${pd1}.jasper -o ../output/${pd1} -f xlsx -t oracle --db-sid GLFNCMI -u precision -p 987#654#32Masterlove -H 10.138.2.33 --db-port 1521 --jdbc-dir ../lib
+ 
   echo "Report generated."
 
 done < $1
