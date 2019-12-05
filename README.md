@@ -44,5 +44,5 @@ FLOAT_PATTERN=#,##0.00
 DATE_PATTERN="d-M-yyyy"
 ```
 
-##Thank you
+## Thank you
 A big thank you to the team of JasperStarter (http://jasperstarter.cenote.de/team-list.html) and specially to Volker Voßkämper and Barbora Berlinger. 
