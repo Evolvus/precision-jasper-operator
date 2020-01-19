@@ -38,6 +38,7 @@ HEADER_FONT_TYPE="Arial"
 HEADER_FONT_SIZE="16"
 HEADER_HEIGHT="30"
 ```
+Make sure that the fonts you have configured is available in the Linux. 
 ### Data format Customisation -->
 ```
 FLOAT_PATTERN=#,##0.00
