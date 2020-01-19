@@ -22,7 +22,11 @@ run.sh container.reg
 ## Report Customisation
 Use the .config.sh to customise your report
 Some of the things that you can customise is given below.
-Make sure that the fonts are available otherwise it does not compile.
+Make sure that the fonts configured are available in the Linux otherwise it does not compile.
+
+The link below provides simple instruction to install the fonts - 
+https://medium.com/source-words/how-to-manually-install-update-and-uninstall-fonts-on-linux-a8d09a3853b0
+
 
 ### Column level customisation --> 
 ```
@@ -38,7 +42,6 @@ HEADER_FONT_TYPE="Arial"
 HEADER_FONT_SIZE="16"
 HEADER_HEIGHT="30"
 ```
-Make sure that the fonts you have configured is available in the Linux. 
 ### Data format Customisation -->
 ```
 FLOAT_PATTERN=#,##0.00
