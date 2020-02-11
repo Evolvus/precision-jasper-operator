@@ -11,7 +11,7 @@ git clone https://github.com/prashantevolvus/precision-jasper-operator.git
 ### create container.reg
 report_name,table_name,report_header
 ### JDBC Driver
-JasperReports uses JDBC driver to connect to the database. Since most JDBC drivers have complicated licensing issues. We do not ship the driver.
+JasperReports uses JDBC driver to connect to the database. Since most JDBC drivers have complicated licensing issue, we do not ship the driver.
 
 You need to copy the JDBC driver in the lib directory
 
