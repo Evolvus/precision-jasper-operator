@@ -10,6 +10,11 @@ It uses -
 git clone https://github.com/prashantevolvus/precision-jasper-operator.git
 ### create container.reg
 report_name,table_name,report_header
+### JDBC Driver
+Jasper uses JDBC driver to connect to the database. Since most JDBC drivers have complicated licensing issues. We do not ship the driver.
+
+You need to copy the JDBC driver in the lib directory
+
 ### Execute
 run.sh container.reg
 
@@ -17,8 +22,7 @@ run.sh container.reg
 ## Things to do
 1) Right now it supports MySQL and Oracle. Need to support more RDBMS
 2) Integrate with Precision100
-3) Copy the driver of the RDBMS system you want to connect
-<sup>[1](#myfootnote1)</sup>
+
 
 <a name="myfootnote1">1</a>: Footnote content goes here
 
