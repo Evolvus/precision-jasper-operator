@@ -47,6 +47,14 @@ HEADER_HEIGHT="30"
 FLOAT_PATTERN=#,##0.00
 DATE_PATTERN="d-M-yyyy"
 ```
+## Licenses of libraries used 
+|Library|License|Version|
+|-------|-------|-------|
+|argparse4j|MIT||
+|commons-beanutils|Apache 2.0|
+|commons-collections|
 
 ## Thank you
-A big thank you to the team of JasperStarter (http://jasperstarter.cenote.de/team-list.html) and specially to Volker Voßkämper and Barbora Berlinger. 
+A big thank you to - 
+1) Team of JasperStarter (http://jasperstarter.cenote.de/team-list.html) and specially to Volker Voßkämper and Barbora Berlinger. 
+2) Jasper Reports team
