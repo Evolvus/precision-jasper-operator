@@ -17,7 +17,10 @@ run.sh container.reg
 ## Things to do
 1) Right now it supports MySQL and Oracle. Need to support more RDBMS
 2) Integrate with Precision100
+3) Copy the driver of the RDBMS system you want to connect
+Here is some text containing a footnote.[^somesamplefootnote]
 
+[^somesamplefootnote]: Here is the text of the footnote itself.
 
 ## Report Customisation
 Use the .config.sh to customise your report
