@@ -50,9 +50,16 @@ DATE_PATTERN="d-M-yyyy"
 ## Licenses of libraries used 
 |Library|License|Version|
 |-------|-------|-------|
-|argparse4j|MIT||
-|commons-beanutils|Apache 2.0|
-|commons-collections|
+|argparse4j|0.5.0|MIT|
+|commons-beanutils|1.9.3|Apache 2.0|
+|commons-collections|3.2.2|Apache 2.0|
+|commons-digester|2.1.0|Apache 2.0|
+|commons-logging|1.1.1|Apache 2.0|
+|jasperreports|6.7.0|LGPL|
+|jasperreports-fonts|6.0.0|LGPL|
+|jasperstarter|-|Apache 2.0|
+|log4j|1.2.17|Apache 2.0|
+|rhino|1.7.7.2|MPL 2.0|
 
 ## Thank you
 A big thank you to - 
