@@ -2,11 +2,12 @@
 source ../.config.sh
 TABLE=$1
 HEADER=$2
-#mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT
-#concat(COLUMN_NAME,'|',least(200,case when data_type not in ('VARCHAR','CHAR') then 200 else character_maximum_length end),'|',data_type)  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'project_management' AND TABLE_NAME = 'products' order by ORDINAL_POSITION;")
+if [ $DB_TYPE = "MYSQL" ]
+then
+    mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT concat(COLUMN_NAME,'|',least(200,case when data_type not in ('VARCHAR','CHAR') then 200 else character_maximum_length end),'|',data_type)  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'project_management' AND TABLE_NAME = 'products' order by ORDINAL_POSITION;")
 
-
-collist=($(sqlplus -s precision/987#654#32Masterlove@GLFNCMI<<eof
+elif [ $DB_TYPE = "ORACLE" ]
+    collist=($(sqlplus -s precision/987#654#32Masterlove@GLFNCMI<<eof
 set pages 0
 set head off
 set feed off
@@ -14,8 +15,8 @@ select column_name||'|'||200||'|'||data_type||'|'||nvl(data_scale,0) from all_ta
 exit
 eof))
 
-#collist=("id" "Product_Name" "Product Descrition" "isCOE" "Product Manager" "Product Director" "profit_centre")
-#collen=(50 100 300 50 100 100 50)
+fi
+ 
 FA1="<field name='"
 FA11="' class='java."
 FA12="'>"
