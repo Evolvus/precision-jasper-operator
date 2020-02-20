@@ -21,7 +21,7 @@ run.sh container.reg
 
 
 ## Things to do
-Action No||Action|Priority|Status|
+|Action No||Action|Priority|Status|
 |--------||------|--------|------|
 |1)| Right now it supports MySQL and Oracle. Need to support more RDBMS|Low|Open|
 |2)| Integrate with Precision100|High|Open|
