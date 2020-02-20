@@ -21,11 +21,13 @@ run.sh container.reg
 
 
 ## Things to do
-1) Right now it supports MySQL and Oracle. Need to support more RDBMS
-2) Integrate with Precision100
-3) Support CSV and PDF and make that configurable
-4) Execute individual report within the container through parameter
-5) Banner at the start up
+Action No||Action|Priority|Status|
+|--------||------|--------|------|
+|1)| Right now it supports MySQL and Oracle. Need to support more RDBMS|Low|Open|
+|2)| Integrate with Precision100|High|Open|
+|3)| Support CSV and PDF and make that configurable|High|Open|
+|4)| Execute individual report within the container through parameter|High|WIP|
+|5)| Banner at the start up|Low|Open|
 
 
 ## Report Customisation
