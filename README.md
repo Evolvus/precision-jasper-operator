@@ -20,14 +20,7 @@ You need to copy the JDBC driver in the lib directory
 run.sh container.reg
 
 
-## Things to do
-|Action No|Action|Priority|Status|
-|---------|------|--------|------|
-|1| Right now it supports MySQL and Oracle. Need to support more RDBMS|Low|Open|
-|2| Integrate with Precision100|High|Open|
-|3| Support CSV and PDF and make that configurable|High|Open|
-|4| Execute individual report within the container through parameter|High|WIP|
-|5| Banner at the start up|Low|Open|
+
 
 
 ## Report Customisation
@@ -71,6 +64,15 @@ DATE_PATTERN="d-M-yyyy"
 |jasperstarter|-|Apache 2.0|
 |log4j|1.2.17|Apache 2.0|
 |rhino|1.7.7.2|MPL 2.0|
+
+## Things to do
+|Action No|Action|Priority|Status|
+|---------|------|--------|------|
+|1| Right now it supports MySQL and Oracle. Need to support more RDBMS|Low|Open|
+|2| Integrate with Precision100|High|Open|
+|3| Support CSV and PDF and make that configurable|High|Open|
+|4| Execute individual report within the container through parameter|High|WIP|
+|5| Banner at the start up|Low|Open|
 
 ## Thank you
 A big thank you to - 
