@@ -4,6 +4,7 @@ It uses -
 1) Bash 4+
 2) JaspersStarter : http://jasperstarter.cenote.de
 3) Java 8
+4) JasperReports
 
 ## Usage
 ### Download the program
