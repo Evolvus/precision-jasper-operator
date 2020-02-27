@@ -3,13 +3,13 @@
 source ./.config.sh
 TABLE=$1
 HEADER=$2
-#Check if there is owner name in table name
+#Check if there is owner name in table name. Also make the owner name and table name upper or oracle fails due to case sensitivity
 if [[ $1 == *"."* ]]; then
-  OWNER=$(echo $1 | cut -d "." -f 1)
-  TABLE=$(echo $1 | cut -d "." -f 2)
+  OWNER=$(echo ${1^^} | cut -d "." -f 1)
+  TABLE=$(echo ${1^^} | cut -d "." -f 2)
 else
-    OWNER=$DB_DEF_SCHEMA
-    TABLE=$1
+    OWNER=${DB_DEF_SCHEMA^^}
+    TABLE=${1^^}
 fi
 
 #mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT

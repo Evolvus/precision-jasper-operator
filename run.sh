@@ -5,7 +5,7 @@ while read -r line;
 do
   if [[ ${line:0:1} == "#" ]] ; then continue; fi
   if [ -z "$line" ] ; then continue; fi
-  if [-z ]
+#  if [-z ]
   pd1=$(echo $line | cut -d "," -f 1)
   TABLE=$(echo $line | cut -d "," -f 2)
   HEADER=$(echo $line | cut -d "," -f 3)
