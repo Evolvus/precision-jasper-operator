@@ -1,6 +1,6 @@
 # precision-jasper-operator
 This is an interesting Module developed to create an excel file from RDBMS table.
-It uses - 
+It uses -
 1) Bash 4+ [Tested on Linux and Mac only]
 2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
 3) Java 8
@@ -11,7 +11,16 @@ It uses -
 git clone https://github.com/prashantevolvus/precision-jasper-operator.git
 ### create container.reg
 report_name,table_name,report_header
-### JDBC Driver
+
+report_name - This is used to identify the report. This will be used for the  report file name.
+table_name - If only table name is provided It will search for the table in default schema specified in DB_DEF_SCHEMA/USER in configuration file - .config.sh
+It can be qualified with schema/user like owner.table_name
+report_header - Descriptive report header inside the report.
+
+### Database
+.config.sh has the properties that connects to Database.
+Right now only MySQL and Oracle is supported. 
+#### JDBC Driver
 JasperReports uses JDBC driver to connect to the database. Since most JDBC drivers have complicated licensing issue, we do not ship the driver.
 
 You need to copy the JDBC driver in the lib directory
@@ -28,11 +37,11 @@ Use the .config.sh to customise your report
 Some of the things that you can customise is given below.
 Make sure that the fonts configured are available in the Linux otherwise jasper report does not compile.
 
-The link below provides simple instruction to install the fonts - 
+The link below provides simple instruction to install the fonts -
 https://medium.com/source-words/how-to-manually-install-update-and-uninstall-fonts-on-linux-a8d09a3853b0
 
 
-### Column level customisation --> 
+### Column level customisation -->
 ```
 COLUMN_BACK_COLOR="#CEDE1F"
 COLUMN_FONT_TYPE="Arial"
@@ -51,7 +60,7 @@ HEADER_HEIGHT="30"
 FLOAT_PATTERN=#,##0.00
 DATE_PATTERN="d-M-yyyy"
 ```
-## Licenses of libraries used 
+## Licenses of libraries used
 |Library|License|Version|
 |-------|-------|-------|
 |argparse4j|0.5.0|MIT|
@@ -75,6 +84,6 @@ DATE_PATTERN="d-M-yyyy"
 |5| Banner at the start up|Low|Open|
 
 ## Thank you
-A big thank you to - 
-1) Team of JasperStarter (http://jasperstarter.cenote.de/team-list.html) and specially to Volker Voßkämper and Barbora Berlinger. 
+A big thank you to -
+1) Team of JasperStarter (http://jasperstarter.cenote.de/team-list.html) and specially to Volker Voßkämper and Barbora Berlinger.
 2) Jasper Reports team

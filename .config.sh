@@ -1,6 +1,6 @@
 #!/usr/local/bin/bash
 
-#RDBMS type MYSQL, ORACLE, Currently these twoo are supported
+#RDBMS type MYSQL, ORACLE, Currently these two are supported
 DB_TYPE=MYSQL
 DB_DEF_SCHEMA=project_management
 
@@ -12,11 +12,11 @@ MYSQL_HOST=127.0.0.1
 MYSQL_PORT=3306
 
 ## FOR DB_TYPE=ORACLE
-ORA_SID=GLFCNMI
+ORA_SID=ORSID
 ORA_USER=SCHM
 ORA_PASSWORD=SCHM
 ORA_PORT=1551
-ORA_HOST=129.168.1.6
+ORA_HOST=192.1.1.1
 
 COLUMN_BACK_COLOR="blue"
 COLUMN_FONT_TYPE="Arial"
