@@ -1,10 +1,10 @@
 # precision-jasper-operator
 This is an interesting Module developed to create an excel file from RDBMS table.
 It uses - 
-1) Bash 4+
-2) JaspersStarter : http://jasperstarter.cenote.de
+1) Bash 4+ [Tested on Linux and Mac only]
+2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
 3) Java 8
-4) JasperReports
+4) JasperReports [Library is packaged]
 
 ## Usage
 ### Download the program
@@ -17,7 +17,7 @@ JasperReports uses JDBC driver to connect to the database. Since most JDBC drive
 You need to copy the JDBC driver in the lib directory
 
 ### Execute
-run.sh container.reg
+./run.sh container.reg
 
 
 
@@ -26,7 +26,7 @@ run.sh container.reg
 ## Report Customisation
 Use the .config.sh to customise your report
 Some of the things that you can customise is given below.
-Make sure that the fonts configured are available in the Linux otherwise it does not compile.
+Make sure that the fonts configured are available in the Linux otherwise jasper report does not compile.
 
 The link below provides simple instruction to install the fonts - 
 https://medium.com/source-words/how-to-manually-install-update-and-uninstall-fonts-on-linux-a8d09a3853b0
