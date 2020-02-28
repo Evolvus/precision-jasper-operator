@@ -26,9 +26,13 @@ JasperReports uses JDBC driver to connect to the database. Since most JDBC drive
 You need to copy the JDBC driver in the lib directory
 
 ### Execute
-./run.sh container.reg
-
-
+Usage: run.sh -c=<Container File Name> [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]
+|Parameter Name|Mandatory|Possible Values|Description|
+|-------|-------|--------|---------------|------------------|
+|Container File Name|Mandatory|Filename|Filename usually .reg file should be in root directory|
+|Report format|Optional (Default xlsx)|view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint|Report format to be generated|
+|Report Name|Optional (Default All reports in the container)|report name in container|the first parameter in container|
+|Mode|Optional (Defaults to BOTH)|BOTH|COMPILE|EXECUTE|COMPILE: Generates JRXML and Compiles to JASPER | EXECUTE: Generates Report | BOTH: COMPILES AND EXECUTES|
 
 
 
