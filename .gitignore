@@ -1,5 +1,7 @@
 **/output/*.xl*
 **/output/*.xlsx
+**/output/*.*
 **/temp/*.jrxml
 **/temp/*.jasper
 **/lib/mysql-connector-java-8.0.18.jar
+**.DS_Store

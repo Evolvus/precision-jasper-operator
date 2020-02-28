@@ -12,10 +12,10 @@ git clone https://github.com/prashantevolvus/precision-jasper-operator.git
 ### create container.reg
 report_name,table_name,report_header
 
-report_name - This is used to identify the report. This will be used for the  report file name.  
-table_name - If only table name is provided It will search for the table in default schema specified in DB_DEF_SCHEMA/USER in configuration file (.config.sh).
+**report_name** - This is used to identify the report. This will be used for the  report file name.  
+**table_name** - If only table name is provided It will search for the table in default schema specified in DB_DEF_SCHEMA/USER in configuration file (.config.sh).
 It can be qualified with schema/user like owner.table_name\
-report_header - Descriptive report header inside the report.
+**report_header** - Descriptive report header inside the report.
 
 ### Database
 .config.sh has the properties that connects to Database.
@@ -56,6 +56,7 @@ HEADER_FONT_SIZE="16"
 HEADER_HEIGHT="30"
 ```
 ### Data format Customisation -->
+Refer MS Excel help for date and float formats
 ```
 FLOAT_PATTERN=#,##0.00
 DATE_PATTERN="d-M-yyyy"
