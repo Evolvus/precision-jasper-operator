@@ -32,7 +32,7 @@ You need to copy the JDBC driver in the lib directory
 |--------------|---------|---------------|-----------|
 |Container File Name|Mandatory|Filename|Filename usually .reg file. Provide full path or it will pick from current directory|
 |Direct details|Mandatory|<report_name>,<table_name>,<report_header>|comma separated single report to be generated|
-|Either provide -c=<Container File Name> or -d=Direct details|
+|`Either provide -c=Container File Name or -d=Direct details`|
 |Report format|Optional (Default xlsx)|view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint|Report format to be generated|
 |Report Name|Optional (Default All reports in the container)|report name in container|report name- the first parameter in container. Only this report will be generated|
 |Mode|Optional (Defaults to BOTH)|BOTH / COMPILE / EXECUTE | **COMPILE** : Generates JRXML and Compiles to JASPER <br/> **EXECUTE** : Generates Report  <br/> **BOTH** : COMPILES AND EXECUTES|
