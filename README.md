@@ -12,14 +12,13 @@ git clone https://github.com/prashantevolvus/precision-jasper-operator.git
 ### create container.reg
 report_name,table_name,report_header
 
-report_name - This is used to identify the report. This will be used for the  report file name.
-table_name - If only table name is provided It will search for the table in default schema specified in DB_DEF_SCHEMA/USER in configuration file - .config.sh
-It can be qualified with schema/user like owner.table_name
+report_name - This is used to identify the report. This will be used for the  report file name.\ table_name - If only table name is provided It will search for the table in default schema specified in DB_DEF_SCHEMA/USER in configuration file - .config.sh
+It can be qualified with schema/user like owner.table_name\
 report_header - Descriptive report header inside the report.
 
 ### Database
 .config.sh has the properties that connects to Database.
-Right now only MySQL and Oracle is supported. 
+Right now only MySQL and Oracle is supported.
 #### JDBC Driver
 JasperReports uses JDBC driver to connect to the database. Since most JDBC drivers have complicated licensing issue, we do not ship the driver.
 
