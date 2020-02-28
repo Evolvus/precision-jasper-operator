@@ -3,7 +3,7 @@ source ./.config.sh
 
 usageOption () {
   echo "Usage: run.sh -c=<Container File Name> [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]"
-  echo "Container File Name - Should be available in the root directory of application"
+  echo "Container File Name - Provide Full patch or it will be picked from current directory"
   echo "Report format -  [Default xlsx] Available format view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint"
   echo "Report Name - [Default All reports] If only one report needs to be executed. This report should be in the container file."
   echo "Mode - [Default BOTH] Available Mode COMPILE: Generates JRXML and Compiles to JASPER | EXECUTE: Generates Report | BOTH: COMPILES AND EXECUTES"
