@@ -26,7 +26,7 @@ JasperReports uses JDBC driver to connect to the database. Since most JDBC drive
 You need to copy the JDBC driver in the lib directory
 
 ### Execute
-Usage: run.sh -c=<Container File Name> [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]
+`Usage: run.sh -c=<Container File Name> [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]  `
 |Parameter Name|Mandatory|Possible Values|Description|
 |-------|-------|--------|---------------|------------------|
 |Container File Name|Mandatory|Filename|Filename usually .reg file should be in root directory|
