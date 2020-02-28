@@ -1,5 +1,8 @@
 # precision-jasper-operator
-This is an interesting Module developed to create an excel file from RDBMS table.
+This was developed to be a plugin (operator) to the precision framework. But it worked so well independently and it can be so useful to everyone for quick reporting that we thought it is best open sourced.
+It is a simple tool that given an RDBMS table it generates a data dump of that table in excel, csv, doc, pdf and whole lot of formats.
+
+
 It uses -
 1) Bash 4+ [Tested on Linux and Mac only]
 2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
