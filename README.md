@@ -79,10 +79,12 @@ DATE_PATTERN="d-M-yyyy"
 |commons-collections|3.2.2|Apache 2.0|
 |commons-digester|2.1.0|Apache 2.0|
 |commons-logging|1.1.1|Apache 2.0|
+|itext|2.1.7|AGPL|
 |jasperreports|6.7.0|LGPL|
 |jasperreports-fonts|6.0.0|LGPL|
 |jasperstarter|-|Apache 2.0|
 |log4j|1.2.17|Apache 2.0|
+|poi|3.17|Apache 2.0|
 |rhino|1.7.7.2|MPL 2.0|
 
 ## Things to do
