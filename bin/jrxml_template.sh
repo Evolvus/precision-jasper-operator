@@ -115,7 +115,7 @@ cat << EOF
         <queryString language="SQL">
                 <![CDATA[select * from ${TABLE}]]>
         </queryString>
-        
+
 $(
 for col in "${collist[@]}"; do
  colname=$(echo $col | cut -d "|" -f 1)
@@ -252,6 +252,20 @@ done
 
                 </band>
         </detail>
+        <noData>
+		<band height="40">
+			<textField hyperlinkTarget="Blank">
+				<reportElement x="0" y="0"  mode="Opaque" width="800" height="${HEADER_HEIGHT}" backcolor="${HEADER_BACK_COLOR}"  uuid="5d2f4af8-59ad-41d8-8123-21d6d6690ad5"/>
+        <box padding="3">
+                <pen lineWidth="0.5"/>
+        </box>
+        <textElement textAlignment="Center" >
+                <font fontName="${HEADER_FONT_TYPE}" size="${HEADER_FONT_SIZE}" isBold="true"/>
+        </textElement>
+				<textFieldExpression><![CDATA["No Data available for ${HEADER}"]]></textFieldExpression>
+			</textField>
+		</band>
+	</noData>
 </jasperReport>
 
 EOF
