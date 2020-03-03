@@ -5,31 +5,29 @@ TABLE=$1
 HEADER=$2
 #Check if there is owner name in table name. Also make the owner name and table name upper or oracle fails due to case sensitivity
 if [[ $1 == *"."* ]]; then
-  OWNER=$(echo ${1^^} | cut -d "." -f 1)
-  TABLE=$(echo ${1^^} | cut -d "." -f 2)
+  OWNER=$(echo "${1^^}" | cut -d "." -f 1)
+  TABLE=$(echo "${1^^}" | cut -d "." -f 2)
 else
     OWNER=${DB_DEF_SCHEMA^^}
     TABLE=${1^^}
 fi
 
-#mapfile -t collist < <(mysql -B --column-names=0 -h127.0.0.1 -uroot -pevolvus*123 -e "SELECT
-#concat(COLUMN_NAME,'|',least(200,case when data_type not in ('VARCHAR','CHAR') then 200 else character_maximum_length end),'|',data_type)  FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'project_management' AND TABLE_NAME = 'products' order by ORDINAL_POSITION;")
-if [ $DB_TYPE == "MYSQL" ]; then
-  mapfile -t collist < <(mysql -B --column-names=0 -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD -e "SELECT concat(COLUMN_NAME,'|', 200 ,'|',case when upper(data_type) in ('FLOAT','INT','DECIMAL','DOUBLE') THEN 'NUMBER' ELSE upper(data_type) END,'|',ifnull(numeric_scale,0))  FROM INFORMATION_SCHEMA.COLUMNS WHERE   TABLE_NAME = '$TABLE' and table_schema = '$OWNER' order by ORDINAL_POSITION;")
-elif [ $DB_TYPE == "ORACLE" ]; then
- collist=($(sqlplus -s “schema”/”pwd”@”pwd”<<eof
+if [ "$DB_TYPE" == "MYSQL" ]; then
+  mapfile -t collist < <(mysql -B --column-names=0 -h"$MYSQL_HOST" -u"$MYSQL_USER" -p"$MYSQL_PASSWORD" -e "SELECT concat(COLUMN_NAME,'|', 200 ,'|',case when upper(data_type) in ('FLOAT','INT','DECIMAL','DOUBLE') THEN 'NUMBER' ELSE upper(data_type) END,'|',ifnull(numeric_scale,0))  FROM INFORMATION_SCHEMA.COLUMNS WHERE   TABLE_NAME = '$TABLE' and table_schema = '$OWNER' order by ORDINAL_POSITION;")
+elif [ "$DB_TYPE" == "ORACLE" ]; then
+ mapfile -t collist < <(sqlplus -s "$ORA_USER"/"$ORA_PASSWORD"@"$ORA_SID"<<eof
   set pages 0
   set head off
   set feed off
   select column_name||'|'||200||'|'||data_type||'|'||nvl(data_scale,0) from all_tab_columns where table_name = '$TABLE'  order by column_id;
   exit
-eof))
+eof
+)
 else
   echo "UNSUPPORTED DB"
   exit
 fi
-#collist=("id" "Product_Name" "Product Descrition" "isCOE" "Product Manager" "Product Director" "profit_centre")
-#collen=(50 100 300 50 100 100 50)
+
 FA1="<field name='"
 FA11="' class='java."
 FA12="'>"
@@ -74,10 +72,6 @@ FBOXA="<box>"
 FBOXB="<pen lineWidth='0.5'/>"
 FBOXC="</box>"
 
-FBOX1=" <topPen lineWidth='0.5' lineStyle='Solid' lineColor='#000000'/>"
-FBOX2=" <leftPen lineWidth='0.5' lineStyle='Solid' lineColor='#000000'/>"
-FBOX3=" <bottomPen lineWidth='0.5' lineStyle='Solid' lineColor='#000000'/>"
-FBOX4=" <rightPen lineWidth='0.5' lineStyle='Solid' lineColor='#000000'/>"
 
 CONN1='de3a888a-9c4a-48e6-8f13-679d0708aed'
 CONN2='90627c11-88ad-4e8e-90d6-799c451e9a3'
@@ -118,18 +112,17 @@ cat << EOF
 
 $(
 for col in "${collist[@]}"; do
- colname=$(echo $col | cut -d "|" -f 1)
-  collen=$(echo $col | cut -d "|" -f 2)
-        coltype=$(echo $col | cut -d "|" -f 3)
-        colscale=$(echo $col | cut -d "|" -f 4)
+        colname=$(echo "$col" | cut -d "|" -f 1)
+        coltype=$(echo "$col" | cut -d "|" -f 3)
+        colscale=$(echo "$col" | cut -d "|" -f 4)
         typtrn=""
-        if [ $coltype = "int" ]
+        if [ "$coltype" = "int" ]
         then
                         typtrn="lang.Integer"
-        elif [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
+        elif [ "$coltype" = "NUMBER" ] && [ "$colscale" -ne 0 ];
         then
                         typtrn="math.BigDecimal"
-        elif [ $coltype = "DATE" ]
+        elif [ "$coltype" = "DATE" ]
         then
                         typtrn="util.Date"
         else
@@ -175,9 +168,9 @@ done
                         i=0
                         x=0
                         for col in "${collist[@]}"; do
-        colname=$(echo $col | cut -d "|" -f 1)
-        wdth=$(echo $col | cut -d "|" -f 2)
-                                coltype=$(echo $col | cut -d "|" -f 3)
+        colname=$(echo "$col" | cut -d "|" -f 1)
+        wdth=$(echo "$col" | cut -d "|" -f 2)
+                                coltype=$(echo "$col" | cut -d "|" -f 3)
 
                                 str="${col// /_}"
 
@@ -214,17 +207,17 @@ done
                         i=0
                         x=0
                         for col in "${collist[@]}"; do
-        colname=$(echo $col | cut -d "|" -f 1)
-        wdth=$(echo $col | cut -d "|" -f 2)
-                                coltype=$(echo $col | cut -d "|" -f 3)
-                                colscale=$(echo $col | cut -d "|" -f 4)
+        colname=$(echo "$col" | cut -d "|" -f 1)
+        wdth=$(echo "$col" | cut -d "|" -f 2)
+                                coltype=$(echo "$col" | cut -d "|" -f 3)
+                                colscale=$(echo "$col" | cut -d "|" -f 4)
 
-                                if [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
+                                if [ "$coltype" = "NUMBER" ] && [ "$colscale" -ne 0 ];
                                 then
                                                 printf '%2s' "${FC1FLOAT}"
                                     printf "'>\n"
 
-                                elif [ $coltype = "DATE" ]
+                                elif [ "$coltype" = "DATE" ]
                                 then
                                                 printf '%2s\n' "${FC1DATE}"
                                 else
@@ -237,11 +230,11 @@ done
                                 printf '%2s\n' "${FBOXA}"
                                 printf '%2s\n' "${FBOXB}"
                                 printf '%2s\n' "${FBOXC}"
-                                if [ $coltype = "NUMBER" ] && [ $colscale -ne 0 ];
+                                if [ "$coltype" = "NUMBER" ] && [ "$colscale" -ne 0 ];
                                 then
                                         printf '%2s\n' "${FC4}"
                                 fi
-                                printf '%2s\n' "${FC2}${colname}${FC21}"
+                                printf '%2s\n' "${FC2}${str}${FC21}"
                                 printf '%2s\n' "${FC3}"
 
                                 i=$((i+1))

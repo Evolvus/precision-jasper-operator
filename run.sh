@@ -14,25 +14,25 @@ processReport () {
   echo "Processing Report $HEADER"
   if [[ ${MODE^^} == "BOTH" || ${MODE^^} == "COMPILE" ]] ; then
     echo "Generating jrxml from the template..."
-    ./bin/jrxml_template.sh $TABLE "$HEADER" > ./temp/"$REPORTNAME".jrxml
+    ./bin/jrxml_template.sh "$TABLE" "$HEADER" > ./temp/"$REPORTNAME".jrxml
     echo "Compiling JRXML to Jasper..."
     ./bin/jasperstarter cp -o ./temp/"$REPORTNAME" ./temp/"$REPORTNAME".jrxml
   fi
   if [[ ${MODE^^} == "BOTH" || ${MODE^^} == "EXECUTE" ]] ; then
     echo "Running the report..."
     if [ "$DB_TYPE" == "MYSQL" ]; then
-      ./bin/jasperstarter pr ./temp/${REPORTNAME}.jasper -o ./output/${REPORTNAME} -f $REPORTFORMAT -t mysql -u $MYSQL_USER -p $MYSQL_PASSWORD -H $MYSQL_HOST --db-port $MYSQL_PORT -n $DB_DEF_SCHEMA --jdbc-dir ./lib
+      ./bin/jasperstarter pr ./temp/"${REPORTNAME}".jasper -o ./output/"${REPORTNAME}" -f "$REPORTFORMAT" -t mysql -u "$MYSQL_USER" -p "$MYSQL_PASSWORD" -H "$MYSQL_HOST" --db-port "$MYSQL_PORT" -n "$DB_DEF_SCHEMA" --jdbc-dir ./lib
     elif [ "$DB_TYPE" == "ORACLE" ]; then
-      ./bin/jasperstarter pr ./temp/${REPORTNAME}.jasper -o ./output/${REPORTNAME} -f $REPORTFORMAT -t oracle --db-sid $ORA_SID -u $ORA_USER -p $ORA_PASSWORD -H $ORA_HOST --db-port $ORA_PORT -n $DB_DEF_SCHEMA --jdbc-dir ./lib
+      ./bin/jasperstarter pr ./temp/"${REPORTNAME}".jasper -o ./output/"${REPORTNAME}" -f "$REPORTFORMAT" -t oracle --db-sid "$ORA_SID" -u "$ORA_USER" -p "$ORA_PASSWORD" -H "$ORA_HOST" --db-port "$ORA_PORT" -n "$DB_DEF_SCHEMA" --jdbc-dir ./lib
     fi
   fi
   echo "Report generated - $HEADER"
 }
 
 retrieveDirect () {
-  REPORTNAME=$(echo $DIRECT | cut -d "," -f 1)
-  TABLE=$(echo $DIRECT | cut -d "," -f 2)
-  HEADER=$(echo $DIRECT | cut -d "," -f 3)
+  REPORTNAME=$(echo "$DIRECT" | cut -d "," -f 1)
+  TABLE=$(echo "$DIRECT" | cut -d "," -f 2)
+  HEADER=$(echo "$DIRECT" | cut -d "," -f 3)
 }
 
 processContainer () {
@@ -43,11 +43,11 @@ processContainer () {
 
     retrieveDirect
 
-    if [[ ! -z $SPECIFICREPORT  ]] && [[ $REPORTNAME != $SPECIFICREPORT ]] ; then continue; fi
+    if [[  -n $SPECIFICREPORT  ]] && [[ $REPORTNAME != "$SPECIFICREPORT" ]] ; then continue; fi
 
     processReport
 
-  done < $CONTAINER
+  done < "$CONTAINER"
 }
 
 REPORTFORMAT="xlsx"
@@ -61,7 +61,7 @@ case $i in
       if [[ ! -s $CONTAINER ]] ; then
         echo "ERROR: File doesn't exist or is empty. Exiting..."
         usageOption
-        exit -1
+        exit 1
       fi
     ;;
     -d=*|--direct=*)
@@ -69,7 +69,7 @@ case $i in
       if [[ -z $DIRECT ]] ; then
         echo "ERROR: Direct value is empty. Exiting..."
         usageOption
-        exit -1
+        exit 1
       fi
     ;;
     -m=*|--mode=*)
@@ -78,17 +78,17 @@ case $i in
         echo "ERROR: Wrong mode provided. Available Mode - "
         echo "BOTH|COMPILE|EXECUTE"
         usageOption
-        exit -1
+        exit 1
       fi
     ;;
     -f=*|--reportformat=*)
       REPORTFORMAT="${i#*=}"
-      check=`echo "view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint," | grep $REPORTFORMAT","| wc -l`
+      check=$(echo "view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint," | grep -c "$REPORTFORMAT"",")
       if [[ $check -ne "1" ]] ; then
         echo "ERROR: Unsupported report format. Choose one from Below - "
         echo "view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint"
         usageOption
-        exit -1
+        exit 1
       fi
     ;;
     -r=*|--report=*)
@@ -97,19 +97,19 @@ case $i in
     *)
         echo "ERROR: Unknown Option. Exiting..."
         usageOption
-        exit -1
+        exit 1
     ;;
 esac
 done
 
-if [[ ! -z $CONTAINER ]] ; then
+if [[ -n $CONTAINER ]] ; then
   processContainer
-elif [[ ! -z $DIRECT ]]; then
+elif [[ -n $DIRECT ]]; then
   retrieveDirect
   processReport
 else
   echo "ERROR: Container or Direct Value not provided. Exiting..."
   echo ""
   usageOption
-  exit -1
+  exit 1
 fi
