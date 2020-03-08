@@ -14,8 +14,11 @@ processReport () {
   echo "Processing Report $HEADER"
   if [[ ${MODE^^} == "BOTH" || ${MODE^^} == "COMPILE" ]] ; then
     echo "Generating jrxml from the template..."
+    perl -pi -e 's/\r//g' ./bin/jrxml_template.sh
     ./bin/jrxml_template.sh "$TABLE" "$HEADER" > ./temp/"$REPORTNAME".jrxml
     echo "Compiling JRXML to Jasper..."
+
+    perl -pi -e 's/\r//g' ./temp/"$REPORTNAME".jrxml
     ./bin/jasperstarter cp -o ./temp/"$REPORTNAME" ./temp/"$REPORTNAME".jrxml
   fi
   if [[ ${MODE^^} == "BOTH" || ${MODE^^} == "EXECUTE" ]] ; then
