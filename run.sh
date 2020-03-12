@@ -2,11 +2,10 @@
 source ./.config.sh
 
 usageOption () {
-  echo "Usage: run.sh [-c=<Container File Name> | -d=<Direct details>] [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]"
+  echo "Usage: run.sh [-c=<Container File Name> | -d=<Direct details>] [-f=<Report format>] [-m=<Mode>]"
   echo "Container File Name - Provide Full path and container file name. If just the container file name is provided then it will be picked from current directory"
   echo "Direct Details - <report_name>,<table_name>,<report_header> comma separated single report generation"
   echo "Report format -  [Default xlsx] Available format view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint"
-  echo "Report Name - [Default All reports] If only one report needs to be executed. This report should be in the container file."
   echo "Mode - [Default BOTH] Available Mode COMPILE: Generates JRXML and Compiles to JASPER | EXECUTE: Generates Report | BOTH: COMPILES AND EXECUTES"
 }
 
@@ -36,19 +35,17 @@ retrieveDirect () {
   REPORTNAME=$(echo "$DIRECT" | cut -d "," -f 1)
   TABLE=$(echo "$DIRECT" | cut -d "," -f 2)
   HEADER=$(echo "$DIRECT" | cut -d "," -f 3)
+  processReport
 }
 
 processContainer () {
   while read -r DIRECT;
   do
+    DIRECT="$(echo -e $DIRECT | tr -d '[:space:]')"
     if [[ ${DIRECT:0:1} == "#" ]] ; then continue; fi
     if [[ -z $DIRECT ]] ; then continue; fi
 
     retrieveDirect
-
-    if [[  -n $SPECIFICREPORT  ]] && [[ $REPORTNAME != "$SPECIFICREPORT" ]] ; then continue; fi
-
-    processReport
 
   done < "$CONTAINER"
 }
@@ -94,9 +91,6 @@ case $i in
         exit 1
       fi
     ;;
-    -r=*|--report=*)
-    SPECIFICREPORT="${i#*=}"
-    ;;
     *)
         echo "ERROR: Unknown Option. Exiting..."
         usageOption
@@ -109,7 +103,6 @@ if [[ -n $CONTAINER ]] ; then
   processContainer
 elif [[ -n $DIRECT ]]; then
   retrieveDirect
-  processReport
 else
   echo "ERROR: Container or Direct Value not provided. Exiting..."
   echo ""
