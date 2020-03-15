@@ -4,13 +4,13 @@ It is a simple tool that given an RDBMS table it generates a data dump of that t
 
 
 It uses -
-1) Bash 4+ [Tested on Linux and Mac only]
-2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
-3) Java 8
-4) JasperReports [Library is packaged]
-5) sqlclient
-  a) mysql - if you are using MySQL
-  b) sqlplus - if you are using Oracle
+ Markup : 1) Bash 4+ [Tested on Linux and Mac only]
+          2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
+          3) Java 8
+          4) JasperReports [Library is packaged]
+          5) sqlclient
+              1) mysql - if you are using MySQL
+              2) sqlplus - if you are using Oracle
 
 ## Usage
 ### Download the program
