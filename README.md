@@ -8,6 +8,9 @@ It uses -
 2) JaspersStarter : http://jasperstarter.cenote.de [Library is packaged ]
 3) Java 8
 4) JasperReports [Library is packaged]
+5) sqlclient
+  a) mysql - if you are using MySQL
+  b) sqlplus - if you are using Oracle
 
 ## Usage
 ### Download the program
@@ -29,7 +32,7 @@ JasperReports uses JDBC driver to connect to the database. Since most JDBC drive
 You need to copy the JDBC driver in the lib directory
 
 ### Execute
-`Usage: run.sh [-c=<Container File Name> | -d=<Direct details>] [-f=<Report format>] [-r=<Report Name>] [-m=<Mode>]`  
+`Usage: run.sh [-c=<Container File Name> | -d=<Direct details>] [-f=<Report format>] [-m=<Mode>]`  
 
 |Parameter Name|Mandatory|Possible Values|Description|
 |--------------|---------|---------------|-----------|
@@ -37,7 +40,6 @@ You need to copy the JDBC driver in the lib directory
 |Direct details|Mandatory|<report_name>,<table_name>,<report_header>|comma separated single report to be generated|
 |Either provide <br/> -c=Container File Name <br/> or <br/> -d=Direct details|
 |Report format|Optional (Default xlsx)|view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint|Report format to be generated|
-|Report Name|Optional (Default All reports in the container)|report name in container|report name- the first parameter in container. Only this report will be generated|
 |Mode|Optional (Defaults to BOTH)|BOTH / COMPILE / EXECUTE | **COMPILE** : Generates JRXML and Compiles to JASPER <br/> **EXECUTE** : Generates Report  <br/> **BOTH** : COMPILES AND EXECUTES|
 
 
@@ -95,6 +97,7 @@ DATE_PATTERN="d-M-yyyy"
 |3| Support CSV and PDF and make that configurable|High|Done|
 |4| Execute individual report within the container through parameter|High|Done|
 |5| Banner at the start up|Low|Open|
+|6| remove dependency on sql clients|Low|Open|
 
 ## Thank you
 A big thank you to -
