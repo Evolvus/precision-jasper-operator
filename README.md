@@ -25,8 +25,6 @@ report_name,table_name,report_header
 It can be qualified with schema/user like owner.table_name\
 **report_header** - Descriptive report header inside the report.
 
-#### Mode - Other Modes
-To be developed
 
 ### Database
 .config.sh has the properties that connects to Database.
