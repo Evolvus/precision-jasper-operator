@@ -36,11 +36,11 @@ You need to copy the JDBC driver in the lib directory
 
 |Parameter|Parameter Name|Mandatory|Possible Values|Description|
 |-----|--------------|---------|---------------|-----------|
-||Mode|Optional (Defaults to BOTH)|BOTH / COMPILE / EXECUTE | **COMPILE** : Generates JRXML and Compiles to JASPER <br/> **EXECUTE** : Generates Report (Assumes JRXML was created previously) <br/> **BOTH** : COMPILES AND EXECUTES|
-||Container File Name|Mandatory|Filename|Filename usually .reg file. Provide full path or it will pick from current directory|
-|Direct details|Mandatory|<report_name>,<table_name>,<report_header>|comma separated single report to be generated|
-||Either provide <br/> -c=Container File Name <br/> or <br/> -d=Direct details|
-||Report format|Optional (Default xlsx)|view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint|Report format to be generated|
+|-m|Mode|Optional (Defaults to BOTH)|BOTH / COMPILE / EXECUTE | **COMPILE** : Generates JRXML and Compiles to JASPER <br/> **EXECUTE** : Generates Report (Assumes JRXML was created previously) <br/> **BOTH** : COMPILES AND EXECUTES|
+|-c|Container File Name|Mandatory|Filename|Filename usually .reg file. Provide full path or it will pick from current directory|
+|-d|Direct details|Mandatory|<report_name>,<table_name>,<report_header>|comma separated single report to be generated|
+||||Either provide <br/> -c=Container File Name <br/> or <br/> -d=Direct details|
+|-f|Report format|Optional (Default xlsx)|view, xlsx, csv, pdf, rtf, xls, xlsMeta,  docx, odt, ods, pptx, csvMeta, html, xhtml, xml, jrprint|Report format to be generated|
 
 
 
