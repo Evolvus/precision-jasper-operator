@@ -54,8 +54,8 @@ FB9="</staticText>"
 
 
 FC1="<textField >"
-FC1FLOAT="<textField isStretchWithOverflow='true' pattern='${FLOAT_PATTERN}"
-FC1DATE="<textField isStretchWithOverflow='true' pattern='${DATE_PATTERN}'>"
+FC1FLOAT="<textField textAdjust='StretchHeight' pattern='${FLOAT_PATTERN}"
+FC1DATE="<textField textAdjust='StretchHeight' pattern='${DATE_PATTERN}'>"
 
 FCX2="<reportElement  x='"
 FCX21="' y='0' width='"
